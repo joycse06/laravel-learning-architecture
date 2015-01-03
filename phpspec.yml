@@ -1,0 +1,6 @@
+suites:
+  saphira_suite:
+    namespace: Saphira
+    src_path: app
+    spec_path: app
+    spec_prefix: spec
