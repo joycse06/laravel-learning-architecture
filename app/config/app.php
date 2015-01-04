@@ -122,7 +122,8 @@ return array(
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
-        'Saphira\Core\CommandBus\CommandBusServiceProvider'
+        'Saphira\Core\CommandBus\CommandBusServiceProvider',
+        'Saphira\Core\Flash\FlashServiceProvider'
 
 	),
 
@@ -190,7 +191,7 @@ return array(
 		'URL'               => 'Illuminate\Support\Facades\URL',
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
-
+        'Flash'             => 'Saphira\Core\Flash\Flash'
 	),
 
 );

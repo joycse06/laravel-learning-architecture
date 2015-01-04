@@ -1,9 +1,14 @@
-<?php namespace Saphira\Core\Validators;
+<?php namespace Saphira\Users\Validators;
 
 
-class RegisterUserValidator{
+use Saphira\Core\Validation\FormValidator;
 
-    public function validate($command){
-        var_dump("validating user");
-    }
+class RegisterUserValidator extends FormValidator{
+
+    protected $rules = [
+        'username' => 'required|unique:users',
+        'email'    => 'required|email|unique:users',
+        'password' => 'required|confirmed'
+    ];
+
 }

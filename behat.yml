@@ -1,0 +1,8 @@
+default:
+  paths:
+    features: app/tests/acceptance
+
+  extensions:
+    Behat\MinkExtension\Extension:
+      goutte: ~
+      base_url: http://d.laraarch.com

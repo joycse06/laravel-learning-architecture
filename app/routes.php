@@ -11,19 +11,78 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+Route::get('/',[
+    'as' => 'home',
+    'uses' => 'WelcomeController@index'
+]);
 
 
 /*
- * User Routes
+ * Registration
  */
-Route::get('users/create', 'UsersController@create');
-Route::post('users', 'UsersController@store');
-Route::get('users/login', 'UsersController@login');
-Route::post('users/login', 'UsersController@doLogin');
-Route::get('users/confirm/{code}', 'UsersController@confirm');
-Route::get('users/forgot_password', 'UsersController@forgotPassword');
-Route::post('users/forgot_password', 'UsersController@doForgotPassword');
-Route::get('users/reset_password/{token}', 'UsersController@resetPassword');
-Route::post('users/reset_password', 'UsersController@doResetPassword');
-Route::get('users/logout', 'UsersController@logout');
+
+Route::get('register', [
+    'as' => 'register_path',
+    'uses' => 'RegistrationController@create'
+]);
+
+Route::post('register', [
+    'as' => 'register_path',
+    'uses' => 'RegistrationController@store'
+]);
+
+/*
+ * Sessions
+ */
+Route::get('login', [
+    'as' => 'login_path',
+    'uses' => 'SessionsController@create'
+]);
+
+Route::post('login',[
+    'as' => 'login_path',
+    'uses' => 'SessionsController@store'
+]);
+
+Route::get('logout', [
+    'as' => 'logout_path',
+    'uses' => 'SessionsController@destroy'
+]);
+
+/*
+ * Password Confirmation
+ */
+Route::get('users/confirm/{code}',[
+    'as' => 'confirm_path',
+    'uses' =>'UsersController@confirm'
+]);
+
+
+
+
+Route::get('users/reset_password/{token}', [
+    'as' => 'reset_path',
+    'uses' => 'UsersController@resetPassword'
+]);
+
+Route::post('users/reset_password', [
+    'as' => 'reset_path',
+    'uses' => 'UsersController@doResetPassword'
+]);
+
+/*
+ * Profile Path
+ */
+
+Route::get('users/dashboard', [
+    'as' => 'profile_path',
+    'uses' => 'UsersController@show'
+]);
+
+/*
+ * Password Reminders
+ */
+
+Route::controller('password', 'RemindersController');
+
+

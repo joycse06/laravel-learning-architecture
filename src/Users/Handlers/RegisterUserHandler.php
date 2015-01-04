@@ -3,13 +3,36 @@
 
 use Saphira\Core\CommandBus\CommandInterface;
 use Saphira\Core\CommandBus\CommandHandlerInterface;
+use Saphira\Users\User;
+use Saphira\Users\UserRepository;
 
 class RegisterUserHandler implements CommandHandlerInterface{
 
+    protected $repository;
+
+    public function __construct(UserRepository $repository)
+    {
+
+        $this->repository = $repository;
+    }
 
     public function handle(CommandInterface $command)
     {
-        dump($command);
-        dump("Handling RegisteruserCommand");
+        // This is a temporary check
+        if(\Config::get('saphira.confirmation_email'))
+            $confirmed = 0;
+        else{
+            // local installation, confirmation Not required
+            $confirmed = 1;
+        }
+
+        $user = User::register(
+            $command->username, $command->email, $command->password,
+            $command->confirmation_code, $confirmed
+        );
+
+        $this->repository->save($user);
+
+        return $user;
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
-use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Database\Migrations\Migration;
 
 class CreatePasswordRemindersTable extends Migration {
 
@@ -14,13 +14,11 @@ class CreatePasswordRemindersTable extends Migration {
 	{
 		Schema::create('password_reminders', function(Blueprint $table)
 		{
-			$table->increments('id');
-            $table->string('email');
-            $table->string('token');
-			$table->timestamps('created_at');
+			$table->string('email')->index();
+			$table->string('token')->index();
+			$table->timestamp('created_at');
 		});
 	}
-
 
 	/**
 	 * Reverse the migrations.

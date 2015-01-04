@@ -19,9 +19,15 @@ abstract class FormValidator {
         $this->validator = $validator;
     }
 
-    public function validate(CommandInterface $command)
+    public function validate( $formData )
     {
-        $formData = get_object_vars($command);
+        if(is_object($formData)) {
+            // if a command is passed then extract
+            // the public properties from it
+            $formData = get_object_vars($formData);
+        }
+
+
 
         $this->validation = $this->validator->make(
             $formData,
@@ -29,7 +35,7 @@ abstract class FormValidator {
             $this->getValidationMessages()
         );
 
-        if($this->validator->fails())
+        if($this->validation->fails())
         {
             throw new FormValidationException('Validation Failed', $this->getValidationErrors());
         }
