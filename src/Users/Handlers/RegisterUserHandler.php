@@ -3,10 +3,13 @@
 
 use Saphira\Core\CommandBus\CommandInterface;
 use Saphira\Core\CommandBus\CommandHandlerInterface;
+use Saphira\Core\Events\DispatchableTrait;
 use Saphira\Users\User;
 use Saphira\Users\UserRepository;
 
 class RegisterUserHandler implements CommandHandlerInterface{
+
+    use DispatchableTrait;
 
     protected $repository;
 
@@ -32,6 +35,8 @@ class RegisterUserHandler implements CommandHandlerInterface{
         );
 
         $this->repository->save($user);
+
+        $this->dispatchEventsFor($user);
 
         return $user;
     }

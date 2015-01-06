@@ -12,7 +12,21 @@
 
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/">Hello</a></li>
+                @if ($currentUser)
+                    <li class="dropdown">
+
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Blog<span class="caret"></span>
+                        </a>
+
+                        <ul class="dropdown-menu" role="menu">
+                            <li>{{ link_to_route('profile_path', 'Your Profile', $currentUser->username) }}</li>
+                            <li><a href="#">Another action</a></li>
+                            <li class="divider"></li>
+                            <li>{{ link_to_route('logout_path', 'Log Out') }}</li>
+                        </ul>
+                    </li>
+                @endif
             </ul>
 
                 <ul class="nav navbar-nav navbar-right">

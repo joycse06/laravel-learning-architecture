@@ -123,7 +123,8 @@ return array(
 		'Illuminate\Workbench\WorkbenchServiceProvider',
 
         'Saphira\Core\CommandBus\CommandBusServiceProvider',
-        'Saphira\Core\Flash\FlashServiceProvider'
+        'Saphira\Core\Flash\FlashServiceProvider',
+		'Saphira\Core\Sluggable\SluggableServiceProvider'
 
 	),
 

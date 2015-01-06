@@ -85,4 +85,27 @@ Route::get('users/dashboard', [
 
 Route::controller('password', 'RemindersController');
 
+/*
+ * Post Controller
+ */
+
+Route::resource('posts', 'PostsController');
+
+Route::any('posts/upload', 'PostsController@upload');
+
+/*
+ * Delete File request for
+ */
+Route::post('/uploads/delete', function(){
+
+    $filename = Input::get('file');
+    $filePath = public_path().'/uploads/'.$filename;
+
+    if (File::exists($filePath)) {
+        File::delete($filePath);
+    }
+
+    return Response::make('success');
+});
+
 

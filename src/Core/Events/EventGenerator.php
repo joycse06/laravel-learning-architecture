@@ -19,7 +19,7 @@ trait EventGenerator {
      */
     public function raise($event)
     {
-        $this->pendingEvents = $event;
+        $this->pendingEvents[] = $event;
     }
 
     /**

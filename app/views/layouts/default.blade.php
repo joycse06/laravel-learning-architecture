@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="/vendor/css/bootstrap-theme.css">
     <link rel="stylesheet" href="/vendor/css/font-awesome.css"/>
     <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
-
+    @yield('css')
     <link rel="stylesheet" href="/css/main.css">
 </head>
 <body>
@@ -22,6 +22,9 @@
 
     <script src="/vendor/js/jquery.js"></script>
     <script src="/vendor/js/bootstrap.js"></script>
+    @yield('js')
+
+    <script src="/js/main.js"></script>
     <script>
         $('#flash-overlay-modal').modal();
 

@@ -23,6 +23,12 @@ class User extends \Eloquent implements UserInterface, RemindableInterface {
 
     protected $hidden = array('password', 'remember_token', 'confirmation_token');
 
+
+    public function posts()
+    {
+        return $this->hasMany('Sapira\Posts\Post', 'user_to_post');
+    }
+
     public function setPasswordAttribute($password)
     {
         $this->attributes['password'] = Hash::make($password);
